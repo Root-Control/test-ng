@@ -18,7 +18,6 @@ export class ListComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.jokes$ = this.jokesService.listJokes();
-		this.jokesService.listJokes().subscribe(joke => console.log(joke));
 	}
 
 }
