@@ -1,0 +1,39 @@
+<mat-form-field class="example-form-field">
+  <mat-label>Search Text</mat-label>
+  <input matInput type="text" [(ngModel)]="searchCriteria">
+  <button mat-button *ngIf="searchCriteria" matSuffix mat-icon-button aria-label="Clear" (click)="searchCriteria=''">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+
+
+<table mat-table [dataSource]="(jokes$ | async) | filter: searchCriteria" class="mat-elevation-z8">
+
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> Id. </th>
+    <td mat-cell *matCellDef="let element"> {{ element.id }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="categories">
+    <th mat-header-cell *matHeaderCellDef> Categories </th>
+    <td mat-cell *matCellDef="let element"> {{ element.categories.join(',') }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="joke">
+    <th mat-header-cell *matHeaderCellDef> Joke </th>
+    <td mat-cell *matCellDef="let element"> {{ element.joke }} </td>
+  </ng-container>
+
+   <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let element">
+      <a href="javascript:void(0)" [routerLink]="[element.id]">
+        View
+      </a>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columns"></tr>
+  <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+</table>

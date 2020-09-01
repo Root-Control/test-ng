@@ -1,0 +1,9 @@
+<div *ngIf="joke$ | async; let item">
+	<ul>
+	 	<li>id: {{ item.id }}</li>
+		<li>categories: {{ item.categories.join(',') }}</li>
+		<li>joke: {{ item.joke }}</li>
+	</ul>
+</div>
+
+<a href="javascript:void(0)" [routerLink]="['../']">View</a>
